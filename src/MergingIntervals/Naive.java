@@ -27,7 +27,7 @@ public class Naive {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         List<Interval> intervalList = new ArrayList<>(n);
-        while((n--) > 0) {
+        while ((n--) > 0) {
             intervalList.add(new Interval(in.nextInt(), in.nextInt()));
         }
         List<Interval> result = mergeIntervals(intervalList);
@@ -46,10 +46,9 @@ public class Naive {
             int start = current.getStart();
             int end = current.getEnd();
             Interval previous = result.get(index);
-            if(previous.getEnd() >= start) {
+            if (previous.getEnd() >= start) {
                 result.set(index, new Interval(previous.getStart(), end));
-            }
-            else {
+            } else {
                 result.add(new Interval(start, end));
                 index++;
             }

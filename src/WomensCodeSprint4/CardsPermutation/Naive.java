@@ -8,10 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
-// does not work for large data sets
+// does not work for large data sets [unaccepted]
 public class Naive {
     private static int count = 0;
     private static HashMap<String, Integer> hashMap = new HashMap<>();
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
@@ -24,8 +25,7 @@ public class Naive {
             int anInt = in.nextInt();
             if (anInt == 0) {
                 pattern.append(".+");
-            }
-            else {
+            } else {
                 pattern.append(anInt);
             }
         }
@@ -48,8 +48,7 @@ public class Naive {
         if (n == 0) {
             count++;
             hashMap.put(prefix, count);
-        }
-        else {
+        } else {
             for (int i = 0; i < n; i++) {
                 permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n));
             }

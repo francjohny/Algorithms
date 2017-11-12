@@ -41,7 +41,7 @@ public class Better {
             }
         }
         String swap = swap(string, p, q);
-        return swap.substring(0, p + 1) + new StringBuilder(swap.substring(p+1)).reverse().toString();
+        return swap.substring(0, p + 1) + new StringBuilder(swap.substring(p + 1)).reverse().toString();
     }
 
     private static String swap(String string, int p, int q) {

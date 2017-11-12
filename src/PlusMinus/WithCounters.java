@@ -8,7 +8,7 @@ public class WithCounters {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int pos = 0, neg = 0, zero = 0;
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             int number = sc.nextInt();
             int i1 = number > 0 ? pos++ : (number < 0 ? neg++ : zero++);
         }

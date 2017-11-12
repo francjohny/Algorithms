@@ -41,6 +41,7 @@ public class Naive {
     private static long count = 0;
     private static int j_copy;
     private static HashMap<String, Integer> dic = new LinkedHashMap<>();
+
     public static void main(String[] args) {
         FastIO in = new FastIO();
         int n = in.getInt();

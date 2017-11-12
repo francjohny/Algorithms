@@ -48,7 +48,7 @@ public class Optimised {
             }
             long[] positiveInts = Arrays.stream(arr).filter(value -> value > 0).toArray();
             long sumOfSequence = Arrays.stream(positiveInts).sum();
-            if(positiveInts.length == 0) {
+            if (positiveInts.length == 0) {
                 sumOfSequence = Arrays.stream(arr).max().getAsLong();
             }
             long maxSubArray = maxSubArray(arr);
@@ -64,7 +64,7 @@ public class Optimised {
         sum[0] = A[0];
         long max = sum[0];
 
-        for(int i = 1; i < n; i++){
+        for (int i = 1; i < n; i++) {
             sum[i] = A[i] + (sum[i - 1] > 0 ? sum[i - 1] : 0);
             max = Math.max(max, sum[i]);
         }

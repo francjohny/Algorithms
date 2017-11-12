@@ -31,7 +31,7 @@ public class Solution {
     }
 }
 
-class Student implements Comparable<Student>{
+class Student implements Comparable<Student> {
     private int id;
     private String name;
     private double cgpa;
@@ -77,7 +77,7 @@ class Priorities {
             String s = split[0];
             if (s.equals(ENTER)) {
                 priorityQueue.add(new Student(Integer.parseInt(split[3]), split[1], Double.parseDouble(split[2])));
-            } else if (s.equals(SERVED)){
+            } else if (s.equals(SERVED)) {
                 priorityQueue.poll();
             }
         });

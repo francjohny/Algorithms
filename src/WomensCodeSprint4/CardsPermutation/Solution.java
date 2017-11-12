@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 public class Solution {
     private static List<List<Integer>> list = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
@@ -20,7 +21,7 @@ public class Solution {
         permute(new ArrayList<>(numbers), 0);
         System.out.println("list = " + list);
         long sum = 0;
-        for (List<Integer> list: list) {
+        for (List<Integer> list : list) {
             notZero.forEach(value -> list.add(value - 1, value));
             System.out.println(Arrays.toString(list.toArray()));
             sum += findIndexOfPermutation("", Arrays.toString(list.toArray()));
@@ -44,13 +45,13 @@ public class Solution {
         return index;
     }
 
-    static void permute(List<Integer> arr, int k){
-        for(int i = k; i < arr.size(); i++){
+    static void permute(List<Integer> arr, int k) {
+        for (int i = k; i < arr.size(); i++) {
             Collections.swap(arr, i, k);
             permute(arr, k + 1);
             Collections.swap(arr, k, i);
         }
-        if (k == arr.size() -1){
+        if (k == arr.size() - 1) {
             System.out.println("Arrays.toString(arr) = " + Arrays.toString(arr.toArray()));
             list.add(arr);
         }

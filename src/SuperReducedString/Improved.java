@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Improved {
 
-    static String super_reduced_string(String s){
+    static String super_reduced_string(String s) {
 
         for (int i = 1; i < s.length(); i++) {
             if (s.charAt(i) == s.charAt(i - 1)) {
-                s = s.substring(0, i - 1) + s.substring(i+1);
+                s = s.substring(0, i - 1) + s.substring(i + 1);
                 i = 0;
             }
         }

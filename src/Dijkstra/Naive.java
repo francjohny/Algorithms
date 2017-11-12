@@ -30,7 +30,7 @@ public class Naive {
     public static void main(String[] args) {
         FastIO in = new FastIO();
         int t = in.getInt();
-        for(int a0 = 0; a0 < t; a0++) {
+        for (int a0 = 0; a0 < t; a0++) {
             int n = in.getInt();
             int m = in.getInt();
             distances = new long[n];
@@ -39,13 +39,13 @@ public class Naive {
             for (int i = 0; i < n; i++) {
                 edges[i] = new ArrayList<>();
             }
-            for(int a1 = 0; a1 < m; a1++) {
+            for (int a1 = 0; a1 < m; a1++) {
                 int x = in.getInt() - 1;
                 int y = in.getInt() - 1;
                 int r = in.getInt();
-                edges[x].add(new Edge(y ,r));
-                edges[y].add(new Edge(x ,r));
-             }
+                edges[x].add(new Edge(y, r));
+                edges[y].add(new Edge(x, r));
+            }
             int s = in.getInt() - 1;
             findShortestPathFromSource(s);
         }
@@ -62,7 +62,7 @@ public class Naive {
         set.add(src);
         while (!set.isEmpty()) {
             src = set.pollFirst();
-            for (Edge edge: edges[src]) {
+            for (Edge edge : edges[src]) {
                 if (distances[edge.getDest()] > distances[src] + edge.getWeight()) {
                     set.remove(edge.getDest());
                     distances[edge.getDest()] = distances[src] + edge.getWeight();

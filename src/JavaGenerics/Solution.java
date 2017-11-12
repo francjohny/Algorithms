@@ -1,13 +1,12 @@
 package JavaGenerics;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 public class Solution {
 
-    public static void main( String args[] ) {
+    public static void main(String args[]) {
         Printer myPrinter = new Printer();
-        Integer[] intArray = { 1, 2, 3 };
+        Integer[] intArray = {1, 2, 3};
         String[] stringArray = {"Hello", "World"};
         myPrinter.printArray(intArray);
         myPrinter.printArray(stringArray);
@@ -16,17 +15,16 @@ public class Solution {
         for (Method method : Printer.class.getDeclaredMethods()) {
             String name = method.getName();
 
-            if(name.equals("printArray"))
+            if (name.equals("printArray"))
                 count++;
         }
 
-        if(count > 1)System.out.println("Method overloading is not allowed!");
+        if (count > 1) System.out.println("Method overloading is not allowed!");
 
     }
 }
 
-class Printer<T>
-{
+class Printer<T> {
     void printArray(T[] array) {
         for (T elem : array) {
             System.out.println(elem);

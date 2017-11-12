@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Naive {
     private static HashMap<Pair, Integer> hashMap = new HashMap<>();
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();

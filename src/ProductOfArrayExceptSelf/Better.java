@@ -27,16 +27,14 @@ public class Better {
         int output[] = new int[n];
         Arrays.fill(output, 1);
 
-        for (i = 0; i < n; i++)
-        {
+        for (i = 0; i < n; i++) {
             output[i] = temp;
             temp *= nums[i];
         }
 
         temp = 1;
 
-        for (i = n - 1; i >= 0; i--)
-        {
+        for (i = n - 1; i >= 0; i--) {
             output[i] *= temp;
             temp *= nums[i];
         }

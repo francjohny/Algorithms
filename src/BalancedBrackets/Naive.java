@@ -5,6 +5,24 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
+/*
+ * A bracket is considered to be any one of the following characters: (, ), {, }, [, or ].
+ * Two brackets are considered to be a matched pair
+ * if the an opening bracket (i.e., (, [, or {) occurs to the left of a closing bracket (i.e., ), ], or }) of the exact same type.
+ * There are three types of matched pairs of brackets: [], {}, and ().
+ * A matching pair of brackets is not balanced if the set of brackets it encloses are not matched.
+ *
+ * Input:
+ * 3
+ * {[()]}
+ * {[(])}
+ * {{[[(())]]}}
+ *
+ * Output:
+ * YES
+ * NO
+ * YES
+ */
 public class Naive {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -36,6 +54,10 @@ public class Naive {
                         stack.pop();
                     } else
                         return NO;
+                    /*
+                     * when the input is not well formed }{
+                     * since the stack is initially empty, an exception is thrown when peeking the top of the stack.
+                     */
                 } catch (EmptyStackException e) {
                     return NO;
                 }

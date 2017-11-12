@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
-// does not work for large data sets
+// does not work for large data sets [unaccepted]
 public class Naive {
 
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class Naive {
         Long n = in.getLong();
         Long s = in.getLong();
         long[] x = LongStream.range(0, n).toArray();
-        for(int a0 = 0; a0 < s; a0++){
+        for (int a0 = 0; a0 < s; a0++) {
             int l = in.getInt();
             int r = in.getInt();
             int[] arr = IntStream.range(l, r + 1).toArray();

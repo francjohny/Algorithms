@@ -1,10 +1,8 @@
 package HowManySubstrings;
 
-public class Optimised
-{
+public class Optimised {
     // A Suffix Trie (A Trie of all suffixes) Node
-    static class SuffixTrieNode
-    {
+    static class SuffixTrieNode {
         static final int MAX_CHAR = 26;
         SuffixTrieNode[] children = new SuffixTrieNode[MAX_CHAR];
 
@@ -17,11 +15,9 @@ public class Optimised
 
         // A recursive function to insert a suffix of the s in
         // subtree rooted with this node
-        void insertSuffix(String s)
-        {
+        void insertSuffix(String s) {
             // If string has more characters
-            if (s.length() > 0)
-            {
+            if (s.length() > 0) {
                 // Find the first character and convert it
                 // into 0-25 range.
                 char cIndex = (char) (s.charAt(0) - 'a');
@@ -38,8 +34,7 @@ public class Optimised
     }
 
     // A Trie of all suffixes
-    static class Suffix_trie
-    {
+    static class Suffix_trie {
         static final int MAX_CHAR = 26;
         SuffixTrieNode root;
 
@@ -55,8 +50,7 @@ public class Optimised
         }
 
         // A recursive function to count nodes in trie
-        int _countNodesInTrie(SuffixTrieNode node)
-        {
+        int _countNodesInTrie(SuffixTrieNode node) {
             // If all characters of pattern have been processed,
             if (node == null)
                 return 0;
@@ -76,16 +70,14 @@ public class Optimised
         }
 
         // method to count total nodes in suffix trie
-        int countNodesInTrie()
-        {
+        int countNodesInTrie() {
             return _countNodesInTrie(root);
         }
 
     }
 
     // Returns count of distinct substrings of str
-    static int countDistinctSubstring(String str)
-    {
+    static int countDistinctSubstring(String str) {
         // Construct a Trie of all suffixes
         Suffix_trie sTrie = new Suffix_trie(str);
 
@@ -94,8 +86,7 @@ public class Optimised
     }
 
     // Driver program to test above function
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         String str = "banana";
         System.out.println("Count of distinct substrings is "
                 + countDistinctSubstring(str));

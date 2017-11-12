@@ -18,10 +18,10 @@ public class Naive {
         String time_24hr = null;
         switch (period) {
             case "AM":
-                time_24hr =  String.format("%02d", hrs) + time_12hr.substring(2, time_12hr.length() - 2);
+                time_24hr = String.format("%02d", hrs) + time_12hr.substring(2, time_12hr.length() - 2);
                 break;
             case "PM":
-                time_24hr =  String.format("%02d", hrs + 12) + time_12hr.substring(2, time_12hr.length() - 2);
+                time_24hr = String.format("%02d", hrs + 12) + time_12hr.substring(2, time_12hr.length() - 2);
                 break;
         }
         return time_24hr;

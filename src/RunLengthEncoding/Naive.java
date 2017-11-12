@@ -8,8 +8,7 @@ public class Naive {
         StringBuilder dest = new StringBuilder();
         for (int i = 0; i < source.length(); i++) {
             int runLength = 1;
-            while(i + 1 < source.length() && source.charAt(i + 1) == source.charAt(i))
-            {
+            while (i + 1 < source.length() && source.charAt(i + 1) == source.charAt(i)) {
                 runLength++;
                 i++;
             }
@@ -19,7 +18,6 @@ public class Naive {
         }
         return dest.toString();
     }
-
 
 
     public static void main(String[] args) {

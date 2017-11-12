@@ -10,7 +10,7 @@ public class Naive {
         int k = calculateSign(a - b);
         int q = flipBit(k);
 
-        System.out.println(a *  k+ b * q);
+        System.out.println(a * k + b * q);
     }
 
     /*

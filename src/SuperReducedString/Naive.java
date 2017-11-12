@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Naive {
 
-    private static String super_reduced_string(String s){
+    private static String super_reduced_string(String s) {
         StringBuilder stringBuilder = new StringBuilder(s);
 
         for (int i = 0; i + 1 < stringBuilder.length(); i++) {

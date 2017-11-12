@@ -21,7 +21,7 @@ public class Naive {
         int slidingWidth = textLen - patternLen + 1;
         int i, j;
         for (i = 0; i < slidingWidth; i++) { // O(n-m+1)
-            for (j = 0; j < patternLen && pattern.charAt(j) == str.charAt(j + i); j++); // O(m)
+            for (j = 0; j < patternLen && pattern.charAt(j) == str.charAt(j + i); j++) ; // O(m)
             if (j >= patternLen)
                 return true;
         }

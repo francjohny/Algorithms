@@ -21,12 +21,12 @@ public class Naive {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt(), i = n, arr[] = new int[n];
-        while(i-- > 0) {
+        while (i-- > 0) {
             arr[i] = in.nextInt();
         }
         i = n;
         while (i-- > 0) {
-            n ^= arr[i] ^ i;
+            n ^= arr[i] ^ i; // this is where the magic is
         }
         System.out.println(n);
     }

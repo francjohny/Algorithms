@@ -59,7 +59,7 @@ public class InBuiltLibrary {
                 TreeMap<String, Integer> treeMap = new TreeMap<>(); // sorts alphabetically
                 LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<>(); // preserves order
 
-                for (String word: splitWords) {
+                for (String word : splitWords) {
                     Integer count = hashMap.get(word);
                     hashMap.put(word, count == null ? 1 : count + 1);
                     treeMap.put(word, count == null ? 1 : count + 1);

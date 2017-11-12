@@ -39,6 +39,7 @@ public class Naive {
 
     private static long max = Integer.MIN_VALUE;
     private static long sum = 0;
+
     public static void main(String[] args) {
         FastIO in = new FastIO();
         int t = in.getInt();
@@ -50,7 +51,7 @@ public class Naive {
             }
             long[] positiveInts = Arrays.stream(arr).filter(value -> value > 0).toArray();
             long sumOfSequence = Arrays.stream(positiveInts).sum();
-            if(positiveInts.length == 0) {
+            if (positiveInts.length == 0) {
                 sumOfSequence = Arrays.stream(arr).max().getAsLong();
             }
             calculateMaxSubArray(arr, 0, n - 1);

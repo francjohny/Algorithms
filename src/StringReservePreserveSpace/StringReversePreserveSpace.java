@@ -10,7 +10,7 @@ public class StringReversePreserveSpace {
         Stack<String> strings = new Stack<>();
         strings.addAll(Arrays.asList(split));
         int i = 1;
-        while(!strings.empty()) {
+        while (!strings.empty()) {
             String pop = strings.pop();
             System.out.print(pop);
             if (i < split.length)
@@ -20,7 +20,7 @@ public class StringReversePreserveSpace {
 
     private static void printSpace(String str, String split) {
         int i = str.indexOf(split), j;
-        for (j = i; j-1 > 0 && str.charAt(j-1) == ' '; j--)
+        for (j = i; j - 1 > 0 && str.charAt(j - 1) == ' '; j--)
             System.out.print(" ");
     }
 }
