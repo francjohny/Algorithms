@@ -8,6 +8,7 @@ import java.util.Scanner;
  * 3) turn off the kth bit: num &= ~(1 << k)
  * 4) toggle the kth bit: num ^= (1 << k)
  * 5) check if power of 2: num & num - 1 == 0
+ * 6) check if odd number: (num & 1) == 1
  */
 public class Naive {
     public static void main(String[] args) {
