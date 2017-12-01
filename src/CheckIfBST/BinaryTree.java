@@ -11,6 +11,13 @@ class Node {
     }
 }
 
+/*
+ * we define a binary search tree to be a binary tree with the following ordering properties:
+ * The data value of every node in a node's left subtree is less than the data value of that node
+ * The data value of every node in a node's right subtree is greater than the data value of that node.
+ *
+ * Given the root node of a binary tree, can you determine if it's also a binary search tree?
+ */
 public class BinaryTree {
     private Node root;
 
@@ -42,6 +49,11 @@ public class BinaryTree {
             System.out.println("NO");
     }
 
+    /*
+     * To check if a tree is a bst,
+     * 1) check if the left subtree of the tree is a bst and
+     * 2) check if the right subtree of the tree is a bst
+     */
     private static boolean check(Node root, int minValue, int maxValue) {
         if (root == null)
             return true;
