@@ -16,7 +16,6 @@ public class HeapSolution {
             double median = computeMedian(lowers, highers);
             System.out.println(median);
         }
-
     }
 
     private static double computeMedian(PriorityQueue<Integer> lowers, PriorityQueue<Integer> highers) {

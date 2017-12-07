@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+
 public class Naive {
 
     public static class FastIO {

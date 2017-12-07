@@ -12,6 +12,8 @@ import java.util.Scanner;
 * Input: [1, 2, 3, 4]
 * Output: [24, 12, 8, 6]
 * Time Complexity: O(n^2)
+*
+* A rather naive solution would be to multiply all nums[i] except where i = j for each i,j=1,2,...,n in nums
 */
 public class Naive {
     public static void main(String[] args) {

@@ -2,6 +2,21 @@ package RunLengthEncoding;
 
 import java.util.Scanner;
 
+/*
+ * Run-length encoding (RLE) is a very simple form of data compression in which runs of data
+ * (that is, sequences in which the same data value occurs in many consecutive data elements)
+ * are stored as a single data value and count, rather than as the original run.
+ *
+ * Bob wrote some code to solve the following problem:
+ * Given an input string, write a function that returns the Run Length Encoded string for the input string.
+ * For example, if the input string is AABBBCCCC, then the function should return A2B3C4.
+ *
+ * Input:
+ * AABBBCCCC
+ *
+ * Output:
+ * A2B3C4
+ */
 public class Naive {
 
     private static String encode(String source) {
