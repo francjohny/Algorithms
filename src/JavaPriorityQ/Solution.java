@@ -6,6 +6,45 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+
+/*
+ * There are a number of students in a school who wait to be served.
+ * Two types of events, ENTER and SERVED, can take place which are described below.
+ * 1. ENTER: A student with some priority enters the queue to be served.
+ * 2. SERVED: The student with the highest priority is served (removed) from the queue.
+ *
+ * A unique id is assigned to each student entering the queue.
+ * The queue serves the students based on the following criteria (priority criteria):
+    1. The student having the highest Cumulative Grade Point Average (CGPA) is served first.
+    2. Any students having the same CGPA will be served by name in ascending case-sensitive alphabetical order.
+    3. Any students having the same CGPA and name will be served in ascending order of the id.
+
+ * The first line contains an integer, n, describing the total number of events.
+ * Each of the subsequent lines will be of the following two forms:
+    1. ENTER name CGPA id: The student to be inserted into the priority queue.
+    2. SERVED: The highest priority student in the queue was served.
+
+ * Input:
+ * 12
+ * ENTER John 3.75 50
+ * ENTER Mark 3.8 24
+ * ENTER Shafaet 3.7 35
+ * SERVED
+ * SERVED
+ * ENTER Samiha 3.85 36
+ * SERVED
+ * ENTER Ashley 3.9 42
+ * ENTER Maria 3.6 46
+ * ENTER Anik 3.95 49
+ * ENTER Dan 3.95 50
+ * SERVED
+ *
+ * Output:
+ * Dan
+ * Ashley
+ * Shafaet
+ * Maria
+ */
 public class Solution {
     private final static Scanner scan = new Scanner(System.in);
     private final static Priorities priorities = new Priorities();
