@@ -1,9 +1,8 @@
-package RedMart;
+package LongestSkiDown;
 
 import javafx.util.Pair;
 
 import java.util.*;
-
 
 /*
  * Given a map/matrix of size MxN, where each number represents the elevation of an area of a mountain. Find the longest ski run down.
@@ -30,7 +29,7 @@ import java.util.*;
  * Output:
  * <length of the longest path><size of the drop> i.e. 58
  */
-public class Solution {
+public class Naive {
     private static int M;
     private static int N;
     private static int elevation[][];
@@ -150,7 +149,7 @@ public class Solution {
         }
         return length;
     }
-    
+
     ///////////////////// HELPER FUNCTIONS /////////////////////
 
     /**
