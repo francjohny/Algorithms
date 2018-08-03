@@ -3,6 +3,7 @@ package LongestSkiDown;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -34,7 +35,7 @@ public class Solution {
     private static int M;
     private static int N;
     private static int elevation[][];
-    private static ArrayList[][] paths;
+    private static List<Integer>[][] paths;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -43,7 +44,7 @@ public class Solution {
         paths = new ArrayList[M][N];
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
-                paths[i][j] = new ArrayList();
+                paths[i][j] = new ArrayList<>();
 
             }
         }
@@ -61,9 +62,9 @@ public class Solution {
         int x = 0, y = 0;
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
-                final ArrayList longestPath = longestPath(i, j);
+                final List<Integer> longestPath = longestPath(i, j);
                 final int skiDown = longestPath.size();
-                final int drop = (int) longestPath.get(longestPath.size() - 1) - (int) longestPath.get(0);
+                final int drop = longestPath.get(longestPath.size() - 1) - longestPath.get(0);
                 if (skiDown > longestSkiDown || (skiDown == longestSkiDown && drop > steepestDrop)) {
                     longestSkiDown = skiDown;
                     steepestDrop = drop;
@@ -75,7 +76,7 @@ public class Solution {
 
         System.out.printf("longest ski down = %d blocks%n", longestSkiDown);
         System.out.print("longest path = ");
-        final ArrayList longestPath = paths[x][y];
+        final List<Integer> longestPath = paths[x][y];
         for (int i = longestPath.size() - 1; i >= 1; i--) {
             System.out.print(longestPath.get(i) + "-");
         }
@@ -92,20 +93,20 @@ public class Solution {
      * @param j the y coordinate of the matrix
      * @return length of the longest ski down from (i,j)
      */
-    private static ArrayList longestPath(int i, int j) {
+    private static List<Integer> longestPath(int i, int j) {
         if (paths[i][j].size() != 0) {
-            return new ArrayList(paths[i][j]);
+            return new ArrayList<>(paths[i][j]);
         }
 
-        ArrayList l1 = checkLongestPath(i, j, right(i, j));
-        ArrayList l2 = checkLongestPath(i, j, down(i, j));
-        ArrayList l3 = checkLongestPath(i, j, left(i, j));
-        ArrayList l4 = checkLongestPath(i, j, up(i, j));
-        int drop1 = (int) l1.get(l1.size() - 1) - (int) l1.get(0);
-        int drop2 = (int) l2.get(l2.size() - 1) - (int) l2.get(0);
-        int drop3 = (int) l3.get(l3.size() - 1) - (int) l3.get(0);
-        int drop4 = (int) l4.get(l4.size() - 1) - (int) l4.get(0);
-        ArrayList longestSkiDown = l1;
+        List<Integer> l1 = checkLongestPath(i, j, right(i, j));
+        List<Integer> l2 = checkLongestPath(i, j, down(i, j));
+        List<Integer> l3 = checkLongestPath(i, j, left(i, j));
+        List<Integer> l4 = checkLongestPath(i, j, up(i, j));
+        List<Integer> longestSkiDown = l1;
+        int drop1 = l1.get(l1.size() - 1) - l1.get(0);
+        int drop2 = l2.get(l2.size() - 1) - l2.get(0);
+        int drop3 = l3.get(l3.size() - 1) - l3.get(0);
+        int drop4 = l4.get(l4.size() - 1) - l4.get(0);
         int steepestDrop = drop1;
         if (l2.size() > longestSkiDown.size() || (l2.size() == longestSkiDown.size() && drop2 > steepestDrop)) {
             longestSkiDown = l2;
@@ -125,10 +126,10 @@ public class Solution {
         return longestSkiDown;
     }
 
-    private static ArrayList checkLongestPath(int i, int j, Pair<Integer, Integer> pos) {
+    private static List<Integer> checkLongestPath(int i, int j, Pair<Integer, Integer> pos) {
         Integer k = pos.getKey();
         Integer v = pos.getValue();
-        ArrayList longestSeq = new ArrayList<>();
+        List<Integer> longestSeq = new ArrayList<>();
         if (exists(pos) && elevation[i][j] > elevation[k][v]) {
             longestSeq = longestPath(k, v);
         }
