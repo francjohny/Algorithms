@@ -2,7 +2,8 @@ package LongestSkiDown;
 
 import javafx.util.Pair;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
  * Given a map/matrix of size MxN, where each number represents the elevation of an area of a mountain. Find the longest ski run down.
@@ -83,8 +84,8 @@ public class Solution {
     }
 
     /**
-     * longestPath() computes the length of the longest ski down from each area
-     * by recursively computing the length of the longest ski down from each adjacent area.
+     * longestPath() computes the length of the longest ski down from each point
+     * by recursively computing the length of the longest ski down from each neighboring point.
      * It does this with the help of checkLongestPath() which checks if the elevation of the area you are going into is less than the one you are in.
      *
      * @param i the x coordinate of the matrix
@@ -93,11 +94,7 @@ public class Solution {
      */
     private static ArrayList longestPath(int i, int j) {
         if (paths[i][j].size() != 0) {
-            ArrayList max = new ArrayList();
-            for (Object points: paths[i][j]) {
-                max.add(points);
-            }
-            return max;
+            return new ArrayList(paths[i][j]);
         }
 
         ArrayList l1 = checkLongestPath(i, j, right(i, j));
@@ -108,20 +105,24 @@ public class Solution {
         int drop2 = (int) l2.get(l2.size() - 1) - (int) l2.get(0);
         int drop3 = (int) l3.get(l3.size() - 1) - (int) l3.get(0);
         int drop4 = (int) l4.get(l4.size() - 1) - (int) l4.get(0);
-        ArrayList max = l1;
+        ArrayList longestSkiDown = l1;
         int steepestDrop = drop1;
-        if (l2.size() > max.size() || (l2.size() == max.size() && drop2 > steepestDrop))
-            max = l2;
-        if (l3.size() > max.size() || (l3.size() == max.size() && drop3 > steepestDrop))
-            max = l3;
-        if (l4.size() > max.size() || (l4.size() == max.size() && drop4 > steepestDrop))
-            max = l4;
-
-        for (Object x : max) {
-            paths[i][j].add(x);
+        if (l2.size() > longestSkiDown.size() || (l2.size() == longestSkiDown.size() && drop2 > steepestDrop)) {
+            longestSkiDown = l2;
+            steepestDrop = drop2;
+        }
+        if (l3.size() > longestSkiDown.size() || (l3.size() == longestSkiDown.size() && drop3 > steepestDrop)) {
+            longestSkiDown = l3;
+            steepestDrop = drop3;
+        }
+        if (l4.size() > longestSkiDown.size() || (l4.size() == longestSkiDown.size() && drop4 > steepestDrop)) {
+            longestSkiDown = l4;
+            steepestDrop = drop4;
         }
 
-        return max;
+        paths[i][j].addAll(longestSkiDown);
+
+        return longestSkiDown;
     }
 
     private static ArrayList checkLongestPath(int i, int j, Pair<Integer, Integer> pos) {
@@ -134,7 +135,7 @@ public class Solution {
         longestSeq.add(elevation[i][j]);
         return longestSeq;
     }
-    
+
     ///////////////////// HELPER FUNCTIONS /////////////////////
 
     private static boolean exists(Pair<Integer, Integer> pos) {
@@ -154,7 +155,7 @@ public class Solution {
     private static Pair<Integer, Integer> up(int i, int j) {
         return new Pair<>(i - 1, j);
     }
-    
+
     private static Pair<Integer, Integer> left(int i, int j) {
         return new Pair<>(i, j - 1);
     }
