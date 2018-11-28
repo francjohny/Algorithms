@@ -42,6 +42,12 @@ public class Naive {
         if (e == 1)
             return n;
         for (int i = 1; i <= n; i++) {
+            /*
+             * 1) If the egg breaks after dropping from xth floor, then we only need to check for floors lower than x with remaining eggs;
+             * so the problem reduces to x-1 floors and n-1 eggs
+             * 2) If the egg doesn’t break after dropping from the xth floor, then we only need to check for floors higher than x;
+             * so the problem reduces to k-x floors and n eggs.
+             */
             int max = Math.max(computeNumberOfDrops(i - 1, e - 1), computeNumberOfDrops(n - i, e));
             if (min > max)
                 min = max;

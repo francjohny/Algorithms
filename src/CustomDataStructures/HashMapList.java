@@ -18,7 +18,7 @@ import java.util.Set;
  * }
  *
  * Goal: to write something like this:
- * HashMap<Integer, String> mapList = new HashMap<>();
+ * HashMapList<Integer, String> mapList = new HashMapList<>();
  * for(String s : strings) {
  *   int key = getBucket(s);
  *   mapList.put(key, s);
