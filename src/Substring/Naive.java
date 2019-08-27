@@ -1,4 +1,4 @@
-package substring;
+package Substring;
 
 import IO.FastIO;
 

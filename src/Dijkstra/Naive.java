@@ -54,11 +54,7 @@ public class Naive {
     private static void findShortestPathFromSource(int src) {
         int s = src;
         distances[src] = 0;
-        TreeSet<Integer> set = new TreeSet<>((o1, o2) -> {
-            int result = Long.compare(distances[o1], distances[o2]);
-            if (result == 0) result = Integer.compare(o1, o2);
-            return result;
-        });
+        TreeSet<Integer> set = new TreeSet<>(Comparator.comparingLong((Integer o) -> distances[o]).thenComparingInt(o -> o));
         set.add(src);
         while (!set.isEmpty()) {
             src = set.pollFirst();
