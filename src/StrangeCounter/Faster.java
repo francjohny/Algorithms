@@ -1,7 +1,5 @@
 package StrangeCounter;
 
-import com.sun.org.apache.xpath.internal.operations.String;
-
 import java.util.Scanner;
 
 public class Faster {

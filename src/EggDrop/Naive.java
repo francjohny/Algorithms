@@ -1,8 +1,8 @@
 package EggDrop;
 
-import javafx.util.Pair;
-
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Scanner;
 
 /*
@@ -21,6 +21,42 @@ import java.util.Scanner;
  * 5. If an egg survives a fall then it would survive a shorter fall.
  * 6. It is not ruled out that the 1st-floor windows break eggs, nor is it ruled out that the 36th-floor do not cause an egg to break.
  */
+class Pair<K,V> implements Serializable {
+    public K key;
+
+    public K getKey() { return key; }
+
+    public V value;
+
+    public V getValue() { return value; }
+
+    Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return key + "=" + value;
+    }
+
+    @Override
+    public int hashCode() {
+        return key.hashCode() * 13 + (value == null ? 0 : value.hashCode());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o instanceof Pair) {
+            Pair pair = (Pair) o;
+            if (!Objects.equals(key, pair.key)) return false;
+            return Objects.equals(value, pair.value);
+        }
+        return false;
+    }
+}
+
 public class Naive {
     private static HashMap<Pair, Integer> hashMap = new HashMap<>();
 
