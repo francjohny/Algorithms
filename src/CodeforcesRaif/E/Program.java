@@ -4,26 +4,39 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Program {
-    static class Carrot {
-        long splitCost;
+    static class Carrot implements Comparable<Carrot> {
         int length;
         int parts;
 
-        public Carrot(long splitCost, int length, int parts) {
-            this.splitCost = splitCost;
+        public Carrot(int length, int parts) {
             this.length = length;
             this.parts = parts;
         }
-    }
 
-    private static long square(int x) {
-        return (long) x * x;
-    }
+        private long square(int x) {
+            return (long) x * x;
+        }
 
-    private static long cost(int length, int parts) {
-        int units = length / parts;
-        int extra = length - units * parts;
-        return (parts - extra) * square(units) + extra * square(units + 1);
+        private long cost() {
+            int biggerSize = length % parts;
+            int smallerSize = parts - biggerSize;
+            long smallerCost = square(length / parts);
+            long biggerCost = square(length / parts + 1);
+            return smallerSize * smallerCost + biggerSize * biggerCost;
+        }
+
+        private long decreaseInCost() {
+            long originalCost = cost();
+            parts++;
+            long newCost = cost();
+            parts--;
+            return originalCost - newCost;
+        }
+
+        @Override
+        public int compareTo(Carrot carrot) {
+            return Long.compare(carrot.decreaseInCost(), decreaseInCost());
+        }
     }
 
     public static void main(String[] args) {
@@ -32,30 +45,18 @@ public class Program {
         int k = sc.nextInt();
         int[] a = new int[n];
         long sum = 0;
-        PriorityQueue<Carrot> priorityQueue = new PriorityQueue<>((o1, o2) -> {
-            if (o1.splitCost < o2.splitCost) {
-                return 1;
-            }
-            if (o1.splitCost == o2.splitCost) {
-                if (o1.length < o2.length) {
-                    return 1;
-                }
-                if (o1.length == o2.length) {
-                    return Integer.compare(o2.parts, o1.parts);
-                }
-                return -1;
-            }
-            return -1;
-        });
+        PriorityQueue<Carrot> priorityQueue = new PriorityQueue<>();
         for (int i = 0; i < n; i++) {
             a[i] = sc.nextInt();
-            sum += square(a[i]);
-            priorityQueue.add(new Carrot(cost(a[i], 1) - cost(a[i], 2), a[i], 2));
+            priorityQueue.add(new Carrot(a[i], 1));
         }
         for (int i = 0; i < k - n; i++) {
             Carrot carrot = priorityQueue.remove();
-            sum -= carrot.splitCost;
-            priorityQueue.add(new Carrot(cost(carrot.length, carrot.parts) - cost(carrot.length, carrot.parts + 1), carrot.length, carrot.parts + 1));
+            carrot.parts++;
+            priorityQueue.add(carrot);
+        }
+        while (!priorityQueue.isEmpty()) {
+             sum += priorityQueue.remove().cost();
         }
         System.out.println(sum);
     }
