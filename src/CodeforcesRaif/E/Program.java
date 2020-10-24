@@ -4,13 +4,13 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Program {
-    static class Seg {
-        long cost;
+    static class Carrot {
+        long splitCost;
         int length;
         int parts;
 
-        public Seg(long cost, int length, int parts) {
-            this.cost = cost;
+        public Carrot(long splitCost, int length, int parts) {
+            this.splitCost = splitCost;
             this.length = length;
             this.parts = parts;
         }
@@ -21,10 +21,9 @@ public class Program {
     }
 
     private static long cost(int length, int parts) {
-        parts++;
-        int n = length / parts;
-        int extra = length % parts;
-        return parts * square(n) + extra * (square(n + 1) - square(n));
+        int units = length / parts;
+        int extra = length - units * parts;
+        return (parts - extra) * square(units) + extra * square(units + 1);
     }
 
     public static void main(String[] args) {
@@ -32,17 +31,31 @@ public class Program {
         int n = sc.nextInt();
         int k = sc.nextInt();
         int[] a = new int[n];
-        int sum = 0;
-        PriorityQueue<Seg> priorityQueue = new PriorityQueue<>((seg, t1) -> (int) (-seg.cost + t1.cost));
+        long sum = 0;
+        PriorityQueue<Carrot> priorityQueue = new PriorityQueue<>((o1, o2) -> {
+            if (o1.splitCost < o2.splitCost) {
+                return 1;
+            }
+            if (o1.splitCost == o2.splitCost) {
+                if (o1.length < o2.length) {
+                    return 1;
+                }
+                if (o1.length == o2.length) {
+                    return Integer.compare(o2.parts, o1.parts);
+                }
+                return -1;
+            }
+            return -1;
+        });
         for (int i = 0; i < n; i++) {
             a[i] = sc.nextInt();
-            sum += cost(a[i], 0);
-            priorityQueue.add(new Seg(cost(a[i], 0) - cost(a[i], 1), a[i], 1));
+            sum += square(a[i]);
+            priorityQueue.add(new Carrot(cost(a[i], 1) - cost(a[i], 2), a[i], 2));
         }
         for (int i = 0; i < k - n; i++) {
-            Seg seg = priorityQueue.remove();
-            sum -= seg.cost;
-            priorityQueue.add(new Seg(cost(seg.length, seg.parts) - cost(seg.length, seg.parts + 1), seg.length, seg.parts + 1));
+            Carrot carrot = priorityQueue.remove();
+            sum -= carrot.splitCost;
+            priorityQueue.add(new Carrot(cost(carrot.length, carrot.parts) - cost(carrot.length, carrot.parts + 1), carrot.length, carrot.parts + 1));
         }
         System.out.println(sum);
     }
