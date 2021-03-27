@@ -1,11 +1,11 @@
-package SuffixArray.A;
+package SuffixArray.B;
 
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Optimized {
-    // O(n log2(n)) time complexity | O(n) space complexity
+public class Naive {
+    // Goal: O(n log(n)) time complexity | O(n) space complexity
     public static void main(String[] args) {
         String str = new Scanner(System.in).next();
         str += '$';
@@ -54,7 +54,7 @@ public class Optimized {
         };
     }
 
-    // O(n log(n)) time complexity, O(n) space complexity
+    // O(n log(n)) time complexity | O(n) space complexity
     private static void buildEquivalenceClass(String str, int n, int[] p, int[] c) {
         List<Pair<Character, Integer>> characterIndexList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -117,3 +117,4 @@ class Pair<K, V> implements Serializable {
         return false;
     }
 }
+
