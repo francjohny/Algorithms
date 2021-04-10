@@ -1,4 +1,4 @@
-package AtCoder.orxor197;
+package AtCoder.Contest197.orxor;
 
 import java.util.Scanner;
 

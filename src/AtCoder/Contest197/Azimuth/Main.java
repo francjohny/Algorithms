@@ -1,4 +1,4 @@
-package AtCoder.Azimuth197;
+package AtCoder.Contest197.Azimuth;
 
 import java.util.Scanner;
 

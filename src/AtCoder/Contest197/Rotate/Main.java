@@ -1,4 +1,4 @@
-package AtCoder.Rotate197;
+package AtCoder.Contest197.Rotate;
 
 import java.util.Scanner;
 

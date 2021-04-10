@@ -1,4 +1,4 @@
-package AtCoder.ConstructPalindrome197;
+package AtCoder.Contest197.ConstructPalindrome;
 
 import java.util.Scanner;
 

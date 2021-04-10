@@ -1,4 +1,4 @@
-package AtCoder.Visibility197;
+package AtCoder.Contest197.Visibility;
 
 import java.util.Scanner;
 
