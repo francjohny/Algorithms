@@ -1,4 +1,4 @@
-package AtCoderDP.D;
+package AtCoder.DP.D;
 
 import java.util.Scanner;
 
