@@ -1,4 +1,4 @@
-package CSES;
+package CSES.graph;
 
 import java.util.*;
 
