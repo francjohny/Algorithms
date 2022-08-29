@@ -1,4 +1,4 @@
-package CSES.tree;
+package Codeforces482.C;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class TreeDistances1 {
+public class Naive {
     static class FastIO {
         private BufferedReader br;
         private StringTokenizer stringTokenizer;
@@ -51,15 +51,32 @@ public class TreeDistances1 {
 
     }
 
-    private static int[][] distances;
+    private final static int N = (int) 3e5 + 5;
+    private static int[] subtrees = new int[N];
+    private static boolean[] validSubtrees = new boolean[N];
+    private static int dfs(int node, int parent, List<Integer>[] graph, int x) {
+        subtrees[node] = 1;
+        if (node == x) {
+            validSubtrees[node] = true;
+        } else {
+            validSubtrees[node] = false;
+        }
+        for(int child: graph[node]) {
+            if (child == parent) continue;
+            subtrees[node] += dfs(child, node, graph, x);
+            validSubtrees[node] |= validSubtrees[child];
+        }
+        return subtrees[node];
+    }
 
     public static void main(String[] args) {
         FastIO fastIO = new FastIO();
         int n = fastIO.getInt();
-        distances = new int[2][200000];
-        List<Integer>[] graph = new ArrayList[200000];
-        for (int i = 0; i < 200000; i++) {
-            graph[i] = new ArrayList<>();
+        int x = fastIO.getInt() - 1;
+        int y = fastIO.getInt() - 1;
+        List<Integer>[] graph = new ArrayList[N];
+        for (int i = 0; i < N; i++) {
+            graph[i] = new ArrayList();
         }
         for (int i = 0; i < n - 1; i++) {
             int u = fastIO.getInt() - 1;
@@ -67,25 +84,14 @@ public class TreeDistances1 {
             graph[u].add(v);
             graph[v].add(u);
         }
-        int a = dfs(0, -1, graph, 0, 0);
-        int b = dfs(a, -1, graph, 0, 0);
-        dfs(b, -1, graph, 0, 1);
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            sb.append(Math.max(distances[0][i], distances[1][i]) + 1).append(" ");
-        }
-        System.out.println(sb);
-    }
-
-    private static int dfs(int node, int parent, List<Integer>[] graph, int distance, int root) {
-        distances[root][node] = distance;
-        int x = -1;
-        for (int child : graph[node]) {
-            if (child != parent) {
-                int y = dfs(child, node, graph, distance + 1, root);
-                if (x == -1 || distances[root][y] > distances[root][x]) x = y;
+        dfs(y, -1, graph, x);
+        int subtreeZ = 0;
+        for (int z: graph[y]) {
+            if (validSubtrees[z]) {
+                subtreeZ = subtrees[y] - subtrees[z];
+                break;
             }
         }
-        return x != -1 ? x : node;
+        System.out.println((long) n * (n - 1) - (long) subtreeZ * subtrees[x]);
     }
 }

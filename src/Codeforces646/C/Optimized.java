@@ -1,4 +1,4 @@
-package CSES.tree;
+package Codeforces646.C;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class TreeDistances1 {
+public class Optimized {
     static class FastIO {
         private BufferedReader br;
         private StringTokenizer stringTokenizer;
@@ -51,41 +51,34 @@ public class TreeDistances1 {
 
     }
 
-    private static int[][] distances;
-
     public static void main(String[] args) {
         FastIO fastIO = new FastIO();
-        int n = fastIO.getInt();
-        distances = new int[2][200000];
-        List<Integer>[] graph = new ArrayList[200000];
-        for (int i = 0; i < 200000; i++) {
-            graph[i] = new ArrayList<>();
-        }
-        for (int i = 0; i < n - 1; i++) {
-            int u = fastIO.getInt() - 1;
-            int v = fastIO.getInt() - 1;
-            graph[u].add(v);
-            graph[v].add(u);
-        }
-        int a = dfs(0, -1, graph, 0, 0);
-        int b = dfs(a, -1, graph, 0, 0);
-        dfs(b, -1, graph, 0, 1);
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            sb.append(Math.max(distances[0][i], distances[1][i]) + 1).append(" ");
-        }
-        System.out.println(sb);
-    }
-
-    private static int dfs(int node, int parent, List<Integer>[] graph, int distance, int root) {
-        distances[root][node] = distance;
-        int x = -1;
-        for (int child : graph[node]) {
-            if (child != parent) {
-                int y = dfs(child, node, graph, distance + 1, root);
-                if (x == -1 || distances[root][y] > distances[root][x]) x = y;
+        int t = fastIO.getInt();
+        while (t-- > 0) {
+            int n = fastIO.getInt();
+            int[] degree = new int[n];
+            int x = fastIO.getInt() - 1;
+            List<Integer>[] graph = new ArrayList[n];
+            for (int i = 0; i < n; i++) {
+                graph[i] = new ArrayList();
+            }
+            for (int i = 0; i < n - 1; i++) {
+                int u = fastIO.getInt() - 1;
+                int v = fastIO.getInt() - 1;
+                graph[u].add(v);
+                graph[v].add(u);
+                degree[u]++;
+                degree[v]++;
+            }
+            if (degree[x] <= 1) {
+                System.out.println("Ayush");
+            } else {
+                if (n % 2 == 0) {
+                    System.out.println("Ayush");
+                } else {
+                    System.out.println("Ashish");
+                }
             }
         }
-        return x != -1 ? x : node;
     }
 }

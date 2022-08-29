@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class TreeDistances1 {
+public class TreeDistances2 {
     static class FastIO {
         private BufferedReader br;
         private StringTokenizer stringTokenizer;
@@ -51,14 +51,18 @@ public class TreeDistances1 {
 
     }
 
-    private static int[][] distances;
+    private static long[] count, sumDistance;
+
+    private final static int N = (int) (2 * 1e5);
 
     public static void main(String[] args) {
         FastIO fastIO = new FastIO();
         int n = fastIO.getInt();
-        distances = new int[2][200000];
-        List<Integer>[] graph = new ArrayList[200000];
-        for (int i = 0; i < 200000; i++) {
+        List<Integer>[] graph = new ArrayList[N];
+        count = new long[N];
+        sumDistance = new long[N];
+
+        for (int i = 0; i < N; i++) {
             graph[i] = new ArrayList<>();
         }
         for (int i = 0; i < n - 1; i++) {
@@ -67,25 +71,32 @@ public class TreeDistances1 {
             graph[u].add(v);
             graph[v].add(u);
         }
-        int a = dfs(0, -1, graph, 0, 0);
-        int b = dfs(a, -1, graph, 0, 0);
-        dfs(b, -1, graph, 0, 1);
+        dfs(0, -1, graph);
+        dfs1(0, -1, n, graph);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
-            sb.append(Math.max(distances[0][i], distances[1][i]) + 1).append(" ");
+            sb.append(sumDistance[i]).append(" ");
         }
         System.out.println(sb);
     }
 
-    private static int dfs(int node, int parent, List<Integer>[] graph, int distance, int root) {
-        distances[root][node] = distance;
-        int x = -1;
-        for (int child : graph[node]) {
-            if (child != parent) {
-                int y = dfs(child, node, graph, distance + 1, root);
-                if (x == -1 || distances[root][y] > distances[root][x]) x = y;
+    private static void dfs(int u, int p, List<Integer>[] graph) {
+        for (int v : graph[u]) {
+            if (v != p) {
+                dfs(v, u, graph);
+                count[u] += count[v];
+                sumDistance[u] += sumDistance[v] + count[v];
             }
         }
-        return x != -1 ? x : node;
+        count[u]++;
+    }
+
+    private static void dfs1(int u, int p, int n, List<Integer>[] graph) {
+        for (int v : graph[u]) {
+            if (v != p) {
+                sumDistance[v] = sumDistance[u] - count[v] + n - count[v];
+                dfs1(v, u, n, graph);
+            }
+        }
     }
 }
