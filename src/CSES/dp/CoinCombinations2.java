@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class MinimizingCoins {
+public class CoinCombinations2 {
     static class FastScanner {
         //I don't understand how this works lmao
         private int BS = 1 << 16;
@@ -122,6 +122,8 @@ public class MinimizingCoins {
         }
     }
 
+    private static final int MOD = (int) (1e9 + 7);
+
     private static void sort(int[] arr) {
         //because sort() uses quicksort which is dumb
         //Collections.sort() uses merge sort
@@ -143,28 +145,22 @@ public class MinimizingCoins {
             coins[i] = in.nextInt();
         }
         sort(coins);
-        if (x < coins[0]) {
-            out.println(-1);
-        } else {
-            int minimumCoins = getMinimumCoins(coins, x);
-            out.println(minimumCoins == MAX ? -1 : minimumCoins);
-        }
+        int coinCombinations = getCoinCombinations(x, coins);
+        out.println(coinCombinations == MOD ? 0 : coinCombinations);
         out.close();
     }
 
-    private static final int MAX = (int) (1e9);
-
-    private static int getMinimumCoins(int[] coins, int x) {
-        int[] dp = new int[x + 1];
-        Arrays.fill(dp, MAX);
-        dp[0] = 0;
-        for (int i = 1; i <= x; i++) {
-            for (int coin : coins) {
-                if (i >= coin) {
-                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+    private static int getCoinCombinations(int n, int[] coins) {
+        int[] dp = new int[n + 1]; // dp[n] = number of ways to get sum = n
+        Arrays.fill(dp, MOD);
+        dp[0] = 1;
+        for (int coin: coins) {
+            for (int i = 1; i <= n; i++) {
+                if (i - coin >= 0 && dp[i - coin] != MOD) {
+                    dp[i] = (dp[i] + dp[i - coin]) % MOD;
                 }
             }
         }
-        return dp[x];
+        return dp[n];
     }
 }
