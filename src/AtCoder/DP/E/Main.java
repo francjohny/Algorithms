@@ -10,7 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int w = scanner.nextInt();
-        long[] dp = new long[n * 1000 + 1];
+        long[] dp = new long[n * 1000 + 1]; // or take sum of all values + 1
         Arrays.fill(dp, INF);
         dp[0] = 0;
         for (int i = 0; i < n; i++) {
@@ -20,6 +20,7 @@ public class Main {
             for (int j = n * 1000; j >= value; j--) {
                 dp[j] = Math.min(dp[j], dp[j - value] + weight);
             }
+//            System.out.println(Arrays.toString(dp));
         }
         long ans = 0;
         for (int i = 0; i <= n * 1000; i++) {
