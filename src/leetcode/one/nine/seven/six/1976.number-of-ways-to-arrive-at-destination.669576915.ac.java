@@ -1,9 +1,6 @@
 package leetcode.one.nine.seven.six;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 class Solution {
     final long MOD = (int) 1e9 + 7;
@@ -22,7 +19,7 @@ class Solution {
     
     private int dijkstra(List<long[]>[] graph) {
         int n = graph.length;
-        PriorityQueue<long[]> q = new PriorityQueue<>((a, b) -> Long.compare(a[1], b[1]));
+        PriorityQueue<long[]> q = new PriorityQueue<>(Comparator.comparingLong(a -> a[1]));
         long[] dist = new long[n];
         Arrays.fill(dist, Long.MAX_VALUE);
         dist[0] = 0;

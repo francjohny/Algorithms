@@ -18,11 +18,11 @@ public class Program {
         }
 
         private long cost() {
-            int biggerSize = length % parts;
-            int smallerSize = parts - biggerSize;
-            long smallerCost = square(length / parts);
-            long biggerCost = square(length / parts + 1);
-            return smallerSize * smallerCost + biggerSize * biggerCost;
+            int biggs = length % parts;
+            int smalls = parts - biggs;
+            int smallerLength = length / parts;
+            int biggerLength = length / parts + 1;
+            return smalls * square(smallerLength) + biggs * square(biggerLength);
         }
 
         private long decreaseInCost() {
@@ -35,7 +35,7 @@ public class Program {
 
         @Override
         public int compareTo(Carrot carrot) {
-            return Long.compare(carrot.decreaseInCost(), decreaseInCost());
+            return Long.compare(carrot.decreaseInCost(), this.decreaseInCost());
         }
     }
 

@@ -1,5 +1,6 @@
 package leetcode.two.two.four.two;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class Solution {
@@ -7,7 +8,7 @@ class Solution {
         int n = scores.length;
         PriorityQueue<Integer>[] q = new PriorityQueue[n];
         for(int i = 0; i < n; i++) {
-            q[i] = new PriorityQueue<>((a, b) -> (scores[a] - scores[b]));
+            q[i] = new PriorityQueue<>(Comparator.comparingInt(a -> scores[a]));
         }
         for(int[] edge: edges) {
             q[edge[0]].offer(edge[1]);

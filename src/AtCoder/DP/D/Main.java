@@ -19,6 +19,6 @@ public class Main {
                 dp[j + weight] = Math.max(dp[j + weight], dp[j] + value);
             }
         }
-        System.out.println(Collections.max(Arrays.stream(dp).boxed().collect(Collectors.toList())));
+        System.out.println(Collections.max(Arrays.stream(dp).boxed().toList()));
     }
 }

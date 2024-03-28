@@ -8,8 +8,8 @@ class MedianFinder {
     private PriorityQueue<Integer> minHeap;
     private PriorityQueue<Integer> maxHeap;
     public MedianFinder() {
-        minHeap = new PriorityQueue<Integer>();
-        maxHeap = new PriorityQueue<Integer>((a, b) -> b - a);
+        minHeap = new PriorityQueue<>();
+        maxHeap = new PriorityQueue<>((a, b) -> b - a);
     }
     
     public void addNum(int num) {

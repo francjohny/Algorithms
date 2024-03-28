@@ -9,13 +9,13 @@ import java.util.*;
  */
 public class Program {
     public static void main(String[] args) {
-        int[] ans = new Program().topKFrequent(new int[]{4,1,-1,2,-1,2,3}, 2);
+        int[] ans = topKFrequent(new int[]{4,1,-1,2,-1,2,3}, 2);
         for (int item :
                 ans) {
             System.out.print(item + " ");
         }
     }
-    public int[] topKFrequent(int[] nums, int k) {
+    public static int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
             map.put(num, map.getOrDefault(num, 0) + 1);

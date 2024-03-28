@@ -1,5 +1,7 @@
 package HowManySubstrings;
 
+import java.util.Arrays;
+
 public class Optimised {
     // A Suffix Trie (A Trie of all suffixes) Node
     static class SuffixTrieNode {
@@ -9,8 +11,7 @@ public class Optimised {
         SuffixTrieNode() // Constructor
         {
             // Initialize all child pointers as NULL
-            for (int i = 0; i < MAX_CHAR; i++)
-                children[i] = null;
+            Arrays.fill(children, null);
         }
 
         // A recursive function to insert a suffix of the s in

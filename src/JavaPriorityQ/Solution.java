@@ -71,9 +71,9 @@ public class Solution {
 }
 
 class Student implements Comparable<Student> {
-    private int id;
-    private String name;
-    private double cgpa;
+    private final int id;
+    private final String name;
+    private final double cgpa;
 
     Student(int id, String name, double cgpa) {
         this.id = id;
@@ -108,11 +108,11 @@ class Student implements Comparable<Student> {
 class Priorities {
     private final String ENTER = "ENTER";
     private final String SERVED = "SERVED";
-    private PriorityQueue<Student> priorityQueue = new PriorityQueue<>();
+    private final PriorityQueue<Student> priorityQueue = new PriorityQueue<>();
 
     List<Student> getStudents(List<String> events) {
         events.forEach(event -> {
-            String[] split = event.split("[ ]");
+            String[] split = event.split(" ");
             String s = split[0];
             if (s.equals(ENTER)) {
                 priorityQueue.add(new Student(Integer.parseInt(split[3]), split[1], Double.parseDouble(split[2])));
@@ -120,6 +120,6 @@ class Priorities {
                 priorityQueue.poll();
             }
         });
-        return new ArrayList<>(priorityQueue.stream().sorted().collect(Collectors.toList()));
+        return priorityQueue.stream().sorted().collect(Collectors.toList());
     }
 }

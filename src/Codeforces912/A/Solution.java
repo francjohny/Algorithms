@@ -1,13 +1,12 @@
-package CSES.tree;
+package Codeforces912.A;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
-public class Subordinates {
+public class Solution {
+
     static class FastIO {
         private BufferedReader br;
         private StringTokenizer stringTokenizer;
@@ -51,29 +50,26 @@ public class Subordinates {
 
     }
     public static void main(String[] args) {
-        FastIO fastIO = new FastIO();
-        int n = fastIO.getInt();
-        List<Integer>[] graph = new ArrayList[n];
-        for (int i = 0; i < n; i++) {
-            graph[i] = new ArrayList<>();
-        }
-        for (int i = 1; i < n; i++) {
-            int u = fastIO.getInt() - 1;
-            graph[u].add(i);
-        }
-        int[] output = new int[n];
-        dfs(0, -1, graph, output);
-        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
-        out.println(Arrays.stream(output).mapToObj(String::valueOf).collect(Collectors.joining(" ")));
-        out.close();
-    }
-
-    private static void dfs(int currentNode, int parent, List<Integer>[] graph, int[] output) {
-        output[currentNode] = 1;
-        for(int node: graph[currentNode]) {
-            if (node != parent) {
-                dfs(node, currentNode, graph, output);
-                output[currentNode] += output[node];
+        FastIO in = new FastIO();
+        int t = in.getInt();
+        while(t-- > 0) {
+            int n = in.getInt();
+            int k = in.getInt();
+            int[] arr = new int[n];
+            boolean isSorted = true;
+            int prev = 0;
+            for (int i = 0; i < n; i++) {
+                arr[i] = in.getInt();
+                if (isSorted && arr[i] >= prev) {
+                    prev = arr[i];
+                } else {
+                    isSorted = false;
+                }
+            }
+            if (isSorted || k >= 2) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
             }
         }
     }

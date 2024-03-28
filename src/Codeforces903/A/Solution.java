@@ -1,13 +1,11 @@
-package CSES.tree;
+package Codeforces903.A;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
-public class Subordinates {
+public class Solution {
     static class FastIO {
         private BufferedReader br;
         private StringTokenizer stringTokenizer;
@@ -50,31 +48,33 @@ public class Subordinates {
         }
 
     }
+
     public static void main(String[] args) {
-        FastIO fastIO = new FastIO();
-        int n = fastIO.getInt();
-        List<Integer>[] graph = new ArrayList[n];
-        for (int i = 0; i < n; i++) {
-            graph[i] = new ArrayList<>();
+        FastIO io = new FastIO();
+        int t = io.getInt();
+        while(t-- > 0) {
+            int n = io.getInt();
+            int m = io.getInt();
+            String s = io.next();
+            String sub = io.next();
+            if (s.contains(sub)) {
+                System.out.println(0);
+                continue;
+            }
+            System.out.println(check(s+s, sub, 1, n, m));
         }
-        for (int i = 1; i < n; i++) {
-            int u = fastIO.getInt() - 1;
-            graph[u].add(i);
-        }
-        int[] output = new int[n];
-        dfs(0, -1, graph, output);
-        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
-        out.println(Arrays.stream(output).mapToObj(String::valueOf).collect(Collectors.joining(" ")));
-        out.close();
     }
 
-    private static void dfs(int currentNode, int parent, List<Integer>[] graph, int[] output) {
-        output[currentNode] = 1;
-        for(int node: graph[currentNode]) {
-            if (node != parent) {
-                dfs(node, currentNode, graph, output);
-                output[currentNode] += output[node];
-            }
+    private static int check(String s, String sub, int min, int n, int m) {
+        if (s.contains(sub)) {
+            return min;
         }
+        if (n >= m * 2) {
+            return -1;
+        }
+        StringBuilder sb = new StringBuilder(s);
+        sb.append(s);
+        min = check(sb.toString(), sub, ++min, sb.length(), m);
+        return min;
     }
 }
