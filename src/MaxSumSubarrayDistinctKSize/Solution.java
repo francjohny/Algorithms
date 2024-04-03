@@ -6,11 +6,12 @@ class Solution {
     public static long maximumSubarraySum(int[] nums, int k) {
         int low = 0, high = 0, n = nums.length;
         long max = 0, sum = 0;
-        Set<Integer> set = Collections.newSetFromMap(new LinkedHashMap<>() {
+        LinkedHashMap<Integer, Boolean> map = new LinkedHashMap<>() {
             protected boolean removeEldestEntry(Map.Entry<Integer, Boolean> eldest) {
                 return size() > k;
             }
-        });
+        };
+        Set<Integer> set = Collections.newSetFromMap(map);
         Map<Integer, Integer> lastPos = new HashMap<>();
         while (high < n) {
             if (!set.add(nums[high])) {
@@ -29,7 +30,7 @@ class Solution {
 //                    iterator.next();
 //                    iterator.remove();
 //                    set.remove(set.iterator().next());
-                    System.out.println(set);
+//                    System.out.println(set);
                 }
                 max = Math.max(max, sum);
             }
